@@ -56,6 +56,7 @@ Public Class TaskRepository
             command.Parameters.AddWithValue("@desc", task.Description)
             command.Parameters.AddWithValue("@done", If(task.IsCompleted, 1, 0))
             command.Parameters.AddWithValue("@prioridad", task.Prioridad.ToString())
+            command.Parameters.AddWithValue("@date", task.DueDate.ToString("yyyy-MM-dd"))
             command.Parameters.AddWithValue("@id", task.Id)
             command.ExecuteNonQuery()
         End Using
