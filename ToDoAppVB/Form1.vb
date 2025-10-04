@@ -15,6 +15,7 @@ Public Class Form1
         repo = New TaskRepository() ' Ahora que la BD existe, se puede usar
         CargarTareas()
 
+        ListView1.OwnerDraw = True
         ListView1.View = View.Details
         ListView1.FullRowSelect = True
         ListView1.GridLines = True
@@ -27,6 +28,21 @@ Public Class Form1
         ListView1.Columns.Add("Prioridad", 100)
 
     End Sub
+
+    Private Sub ListView1_DrawSubItem(sender As Object, e As DrawListViewSubItemEventArgs) Handles ListView1.DrawSubItem
+        Dim priorityText As String = e.SubItem.Text
+
+        ' Dibuja fondo rosa claro si la prioridad es Alta
+        If e.ColumnIndex = 4 AndAlso priorityText = "Alta" Then
+            e.Graphics.FillRectangle(Brushes.LightPink, e.Bounds)
+            e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, Brushes.Red, e.Bounds)
+        Else
+            e.DrawBackground()
+            e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, Brushes.Black, e.Bounds)
+        End If
+    End Sub
+
+
 
     Private Sub CrearBaseDeDatos()
         Dim rutaBD As String = "tasks.db"
