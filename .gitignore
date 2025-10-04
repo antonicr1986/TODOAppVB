@@ -1,0 +1,9 @@
+# Archivos de Visual Studio que no deben versionarse
+.vs/
+*.suo
+*.user
+*.cache
+*.dbmdl
+*.log
+bin/
+obj/
