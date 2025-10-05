@@ -32,11 +32,14 @@ Partial Class Form1
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.ComboBoxPrioridad = New System.Windows.Forms.ComboBox()
         Me.ButtonExportarCSV = New System.Windows.Forms.Button()
+        Me.LabelDescripcion = New System.Windows.Forms.Label()
+        Me.LabelFecha = New System.Windows.Forms.Label()
+        Me.LabelPrioridad = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ButtonCompletada
         '
-        Me.ButtonCompletada.Location = New System.Drawing.Point(126, 304)
+        Me.ButtonCompletada.Location = New System.Drawing.Point(119, 337)
         Me.ButtonCompletada.Name = "ButtonCompletada"
         Me.ButtonCompletada.Size = New System.Drawing.Size(75, 23)
         Me.ButtonCompletada.TabIndex = 0
@@ -45,7 +48,7 @@ Partial Class Form1
         '
         'ButtonEliminar
         '
-        Me.ButtonEliminar.Location = New System.Drawing.Point(316, 304)
+        Me.ButtonEliminar.Location = New System.Drawing.Point(309, 337)
         Me.ButtonEliminar.Name = "ButtonEliminar"
         Me.ButtonEliminar.Size = New System.Drawing.Size(75, 23)
         Me.ButtonEliminar.TabIndex = 1
@@ -54,7 +57,7 @@ Partial Class Form1
         '
         'ButtonEditar
         '
-        Me.ButtonEditar.Location = New System.Drawing.Point(31, 304)
+        Me.ButtonEditar.Location = New System.Drawing.Point(24, 337)
         Me.ButtonEditar.Name = "ButtonEditar"
         Me.ButtonEditar.Size = New System.Drawing.Size(75, 23)
         Me.ButtonEditar.TabIndex = 2
@@ -63,15 +66,14 @@ Partial Class Form1
         '
         'TextBoxTarea
         '
-        Me.TextBoxTarea.Location = New System.Drawing.Point(40, 22)
+        Me.TextBoxTarea.Location = New System.Drawing.Point(24, 40)
         Me.TextBoxTarea.Name = "TextBoxTarea"
         Me.TextBoxTarea.Size = New System.Drawing.Size(268, 20)
         Me.TextBoxTarea.TabIndex = 3
-        Me.TextBoxTarea.Text = "Tarea"
         '
         'ButtonAgregarTarea
         '
-        Me.ButtonAgregarTarea.Location = New System.Drawing.Point(584, 20)
+        Me.ButtonAgregarTarea.Location = New System.Drawing.Point(577, 37)
         Me.ButtonAgregarTarea.Name = "ButtonAgregarTarea"
         Me.ButtonAgregarTarea.Size = New System.Drawing.Size(103, 23)
         Me.ButtonAgregarTarea.TabIndex = 4
@@ -81,16 +83,16 @@ Partial Class Form1
         'ListView1
         '
         Me.ListView1.HideSelection = False
-        Me.ListView1.Location = New System.Drawing.Point(31, 49)
+        Me.ListView1.Location = New System.Drawing.Point(24, 69)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(656, 234)
+        Me.ListView1.Size = New System.Drawing.Size(656, 247)
         Me.ListView1.TabIndex = 5
         Me.ListView1.UseCompatibleStateImageBehavior = False
         '
         'DateTimePicker1
         '
         Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker1.Location = New System.Drawing.Point(334, 22)
+        Me.DateTimePicker1.Location = New System.Drawing.Point(330, 40)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(96, 20)
         Me.DateTimePicker1.TabIndex = 6
@@ -99,26 +101,55 @@ Partial Class Form1
         '
         Me.ComboBoxPrioridad.FormattingEnabled = True
         Me.ComboBoxPrioridad.Items.AddRange(New Object() {"Baja", "Media", "Alta"})
-        Me.ComboBoxPrioridad.Location = New System.Drawing.Point(448, 22)
+        Me.ComboBoxPrioridad.Location = New System.Drawing.Point(444, 39)
         Me.ComboBoxPrioridad.Name = "ComboBoxPrioridad"
         Me.ComboBoxPrioridad.Size = New System.Drawing.Size(121, 21)
         Me.ComboBoxPrioridad.TabIndex = 7
-        Me.ComboBoxPrioridad.Text = "Prioridad"
         '
         'ButtonExportarCSV
         '
-        Me.ButtonExportarCSV.Location = New System.Drawing.Point(584, 304)
+        Me.ButtonExportarCSV.Location = New System.Drawing.Point(577, 337)
         Me.ButtonExportarCSV.Name = "ButtonExportarCSV"
         Me.ButtonExportarCSV.Size = New System.Drawing.Size(103, 23)
         Me.ButtonExportarCSV.TabIndex = 8
         Me.ButtonExportarCSV.Text = "Exportar a CSV"
         Me.ButtonExportarCSV.UseVisualStyleBackColor = True
         '
+        'LabelDescripcion
+        '
+        Me.LabelDescripcion.AutoSize = True
+        Me.LabelDescripcion.Location = New System.Drawing.Point(24, 24)
+        Me.LabelDescripcion.Name = "LabelDescripcion"
+        Me.LabelDescripcion.Size = New System.Drawing.Size(63, 13)
+        Me.LabelDescripcion.TabIndex = 9
+        Me.LabelDescripcion.Text = "Descripción"
+        '
+        'LabelFecha
+        '
+        Me.LabelFecha.AutoSize = True
+        Me.LabelFecha.Location = New System.Drawing.Point(327, 24)
+        Me.LabelFecha.Name = "LabelFecha"
+        Me.LabelFecha.Size = New System.Drawing.Size(37, 13)
+        Me.LabelFecha.TabIndex = 10
+        Me.LabelFecha.Text = "Fecha"
+        '
+        'LabelPrioridad
+        '
+        Me.LabelPrioridad.AutoSize = True
+        Me.LabelPrioridad.Location = New System.Drawing.Point(441, 24)
+        Me.LabelPrioridad.Name = "LabelPrioridad"
+        Me.LabelPrioridad.Size = New System.Drawing.Size(48, 13)
+        Me.LabelPrioridad.TabIndex = 11
+        Me.LabelPrioridad.Text = "Prioridad"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(703, 339)
+        Me.ClientSize = New System.Drawing.Size(703, 376)
+        Me.Controls.Add(Me.LabelPrioridad)
+        Me.Controls.Add(Me.LabelFecha)
+        Me.Controls.Add(Me.LabelDescripcion)
         Me.Controls.Add(Me.ButtonExportarCSV)
         Me.Controls.Add(Me.ComboBoxPrioridad)
         Me.Controls.Add(Me.DateTimePicker1)
@@ -147,4 +178,7 @@ Partial Class Form1
     Friend WithEvents DateTimePicker1 As DateTimePicker
     Friend WithEvents ComboBoxPrioridad As ComboBox
     Friend WithEvents ButtonExportarCSV As Button
+    Friend WithEvents LabelDescripcion As Label
+    Friend WithEvents LabelFecha As Label
+    Friend WithEvents LabelPrioridad As Label
 End Class

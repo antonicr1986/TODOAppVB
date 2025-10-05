@@ -1,8 +1,18 @@
-1.-Agregar funcionalidad de ordenar por fecha o si esta completada o no la tarea.
+1.-Agregar funcionalidad de ordenar por fecha, completada, id, descripción DONE!!!!!!
+
 2.-Pulir gráficamente la aplicación.
+
 3.-a-Añadir campos como prioridad (alta, media, baja) DONE!!!!!!!!
    b-Aplicar colores para visualizar rápidamente  DONE!!!!!!!!
+   C-Se dejo todo comentado lo anterior ya que me jodia la visualización de selección
+	de la fila. Arreglar esto marcadado como #TODO
+
 4.-Integrar alertas que se disparen según fecha de vencimiento
+
 5.-Añadir filtros por fecha, completa o no, prioridad.
+
 6.-Exportar a Excel o PDF DONE!!!!!!!!!!
-7.-Pulir codigo
+
+7.-Pulir código
+	a.-Arquitectura según carpetas DONE!!!!!
+	b.-Pulir código línea a línea 
