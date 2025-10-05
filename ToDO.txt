@@ -1,6 +1,7 @@
-1.-Agregar funcionalidad de ordenar por fecha, completada, id, descripción DONE!!!!!!
+1.-a-Agregar funcionalidad de ordenar por fecha, completada, id, descripción DONE!!!!!!
+   b-Añadir flechas asc o desc según orden marcado 
 
-2.-Pulir gráficamente la aplicación.
+2.-Pulir gráficamente la aplicación. DONE!!!!!!
 
 3.-a-Añadir campos como prioridad (alta, media, baja) DONE!!!!!!!!
    b-Aplicar colores para visualizar rápidamente  DONE!!!!!!!!

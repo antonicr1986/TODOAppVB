@@ -3,7 +3,7 @@ Imports System.IO
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 
-Public Class Form1
+Public Class MainForm
 
     Private repo As New TaskRepository()
     Private sortColumn As Integer = -1
@@ -13,7 +13,10 @@ Public Class Form1
 
         ComboBoxPrioridad.DataSource = [Enum].GetValues(GetType(Prioridad))
         ComboBoxPrioridad.DisplayMember = "ToString"
-        CrearBaseDeDatos()
+
+        Dim dbInit As New DatabaseInitializer()
+        dbInit.Inicializar()
+
         repo = New TaskRepository() ' Ahora que la BD existe, se puede usar
         CargarTareas()
 
@@ -96,31 +99,6 @@ Public Class Form1
     End Function
 
 #End Region
-
-
-    Private Sub CrearBaseDeDatos()
-        Dim rutaBD As String = "tasks.db"
-
-        ' Si el archivo no existe, lo crea
-        If Not File.Exists(rutaBD) Then
-            SQLiteConnection.CreateFile(rutaBD)
-
-            Using conexion As New SQLiteConnection("Data Source=tasks.db;Version=3;")
-                conexion.Open()
-                Dim sql As String = "CREATE TABLE Tasks (
-                                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                                    Description TEXT NOT NULL,
-                                    IsCompleted INTEGER NOT NULL,
-                                    DueDate TEXT,
-                                    Prioridad TEXT
-                                 );"
-                Dim comando As New SQLiteCommand(sql, conexion)
-                comando.ExecuteNonQuery()
-            End Using
-
-            MessageBox.Show("Base de datos creada correctamente.")
-        End If
-    End Sub
 
     Private Sub CargarTareas()
         ListView1.Items.Clear()
@@ -238,7 +216,6 @@ Public Class Form1
     End Sub
 
 #End Region
-
 
 
 End Class
