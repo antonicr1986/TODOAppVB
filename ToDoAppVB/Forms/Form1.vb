@@ -6,6 +6,8 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Public Class Form1
 
     Private repo As New TaskRepository()
+    Private sortColumn As Integer = -1
+    Private sortState As Dictionary(Of Integer, SortOrder) = New Dictionary(Of Integer, SortOrder)
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -15,33 +17,85 @@ Public Class Form1
         repo = New TaskRepository() ' Ahora que la BD existe, se puede usar
         CargarTareas()
 
-        ListView1.OwnerDraw = True
+        'ListView1.OwnerDraw = True DESCOMENTAR PARA PINTAR LA LISTVIEW SEGUN PRIORIDAD #TODO
         ListView1.View = View.Details
         ListView1.FullRowSelect = True
         ListView1.GridLines = True
 
         ListView1.Columns.Clear()
         ListView1.Columns.Add("ID", 50)
-        ListView1.Columns.Add("Descripción", 200)
+        ListView1.Columns.Add("Descripción", 300)
         ListView1.Columns.Add("Completada", 80)
         ListView1.Columns.Add("Fecha", 100)
         ListView1.Columns.Add("Prioridad", 100)
 
     End Sub
 
-    Private Sub ListView1_DrawSubItem(sender As Object, e As DrawListViewSubItemEventArgs) Handles ListView1.DrawSubItem
-        Dim priorityText As String = e.SubItem.Text
 
-        ' Dibuja fondo rosa claro si la prioridad es Alta
-        If e.ColumnIndex = 4 AndAlso priorityText = "Alta" Then
-            e.Graphics.FillRectangle(Brushes.LightPink, e.Bounds)
-            e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, Brushes.Red, e.Bounds)
+#Region "Metodos de ordenacion y pintado"
+
+    'ORDENAR COLUMNA AL HACER CLICK
+    Private Sub ListView1_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles ListView1.ColumnClick
+        If e.Column <> sortColumn Then
+            sortColumn = e.Column
+            sortState(e.Column) = SortOrder.Ascending
         Else
-            e.DrawBackground()
-            e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, Brushes.Black, e.Bounds)
+            If sortState.ContainsKey(e.Column) Then
+                sortState(e.Column) = If(sortState(e.Column) = SortOrder.Ascending, SortOrder.Descending, SortOrder.Ascending)
+            Else
+                sortState(e.Column) = SortOrder.Ascending
+            End If
         End If
+        ListView1.ListViewItemSorter = New ListViewItemComparer(e.Column, sortState(e.Column))
+        ListView1.Sort()
     End Sub
 
+    'METODO PARA PINTAR LA LISTVIEW SEGUN LA PRIORIDAD #TODO
+
+    'Private Sub ListView1_DrawSubItem(sender As Object, e As DrawListViewSubItemEventArgs) Handles ListView1.DrawSubItem
+    '    Dim priorityText As String = e.SubItem.Text
+    '    Dim itemSelected As Boolean = (e.ItemState And ListViewItemStates.Selected) <> 0
+
+    '    ' Fondo azul si está seleccionado
+    '    If itemSelected Then
+    '        e.Graphics.FillRectangle(SystemBrushes.Highlight, e.Bounds)
+    '        e.Graphics.DrawString(e.SubItem.Text, ListView1.Font, SystemBrushes.HighlightText, e.Bounds)
+    '    Else
+    '        ' Dibuja fondo rosa claro si la prioridad es Alta
+    '        If e.ColumnIndex = 4 AndAlso priorityText = "Alta" Then
+    '            e.Graphics.FillRectangle(Brushes.LightPink, e.Bounds)
+    '            e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, Brushes.Red, e.Bounds)
+    '        Else
+    '            e.DrawBackground()
+    '            e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, Brushes.Black, e.Bounds)
+    '        End If
+    '    End If
+    'End Sub
+
+    Private Sub ActualizarEncabezados(columnaClicada As Integer)
+        For i As Integer = 0 To ListView1.Columns.Count - 1
+            Dim textoBase As String = ObtenerNombreOriginal(i) ' ← Este método lo defines tú
+            If sortState.ContainsKey(i) Then
+                Dim flecha As String = If(sortState(i) = SortOrder.Ascending, " ↑", " ↓")
+                ListView1.Columns(i).Text = textoBase & flecha
+            Else
+                ListView1.Columns(i).Text = textoBase
+            End If
+        Next
+    End Sub
+
+    Private Function ObtenerNombreOriginal(index As Integer) As String
+        Select Case index
+            Case 0 : Return "ID"
+            Case 1 : Return "Descripción"
+            Case 2 : Return "Completada"
+            Case 3 : Return "Fecha"
+            Case 4 : Return "Prioridad"
+            Case Else : Return "Columna"
+        End Select
+    End Function
+
+#End Region
 
 
     Private Sub CrearBaseDeDatos()
@@ -88,8 +142,6 @@ Public Class Form1
         End If
         Return -1 ' Ninguna tarea seleccionada
     End Function
-
-
 
 
 #Region "Métodos de click"
@@ -175,41 +227,19 @@ Public Class Form1
             MessageBox.Show("No se encontró la tarea seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
 
-
-
     End Sub
 
     Private Sub ButtonExportarCSV_Click(sender As Object, e As EventArgs) Handles ButtonExportarCSV.Click
         Dim tareas As List(Of Task) = repo.GetAllTasks()
-        Dim rutaArchivo As String = "tareas_exportadas.csv"
 
-        Try
-            Using writer As New StreamWriter(rutaArchivo, False, System.Text.Encoding.UTF8)
-                ' Escribir encabezados
-                writer.WriteLine("ID,Descripción,Completada,Fecha,Vencimiento,Prioridad")
-
-                ' Escribir cada tarea
-                For Each tarea In tareas
-                    Dim completadaTexto As String = If(tarea.IsCompleted, "Sí", "No")
-                    Dim linea As String = String.Format("{0},""{1}"",{2},{3},{4},{5}",
-                                                    tarea.Id,
-                                                    tarea.Description.Replace("""", """"""),
-                                                    completadaTexto,
-                                                    tarea.DueDate.ToString("dd/MM/yyyy"),
-                                                    tarea.DueDate.ToString("yyyy-MM-dd"),
-                                                    tarea.Prioridad.ToString())
-                    writer.WriteLine(linea)
-                Next
-            End Using
-
-            MessageBox.Show("Tareas exportadas correctamente a: " & rutaArchivo, "Exportación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Catch ex As Exception
-            MessageBox.Show("Error al exportar: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        Dim exporter As New CsvExporter()
+        exporter.ExportarCSV(tareas)
 
     End Sub
 
 #End Region
+
+
 
 End Class
 
