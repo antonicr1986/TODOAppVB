@@ -39,30 +39,33 @@ Partial Class Form1
         '
         'ButtonCompletada
         '
+        Me.ButtonCompletada.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(245, Byte), Integer))
         Me.ButtonCompletada.Location = New System.Drawing.Point(119, 337)
         Me.ButtonCompletada.Name = "ButtonCompletada"
-        Me.ButtonCompletada.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonCompletada.Size = New System.Drawing.Size(85, 23)
         Me.ButtonCompletada.TabIndex = 0
-        Me.ButtonCompletada.Text = "Completada"
-        Me.ButtonCompletada.UseVisualStyleBackColor = True
+        Me.ButtonCompletada.Text = "✅ Completar"
+        Me.ButtonCompletada.UseVisualStyleBackColor = False
         '
         'ButtonEliminar
         '
+        Me.ButtonEliminar.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ButtonEliminar.Location = New System.Drawing.Point(309, 337)
         Me.ButtonEliminar.Name = "ButtonEliminar"
         Me.ButtonEliminar.Size = New System.Drawing.Size(75, 23)
         Me.ButtonEliminar.TabIndex = 1
-        Me.ButtonEliminar.Text = "Eliminar"
-        Me.ButtonEliminar.UseVisualStyleBackColor = True
+        Me.ButtonEliminar.Text = "🗑️ Eliminar"
+        Me.ButtonEliminar.UseVisualStyleBackColor = False
         '
         'ButtonEditar
         '
+        Me.ButtonEditar.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(230, Byte), Integer))
         Me.ButtonEditar.Location = New System.Drawing.Point(24, 337)
         Me.ButtonEditar.Name = "ButtonEditar"
         Me.ButtonEditar.Size = New System.Drawing.Size(75, 23)
         Me.ButtonEditar.TabIndex = 2
-        Me.ButtonEditar.Text = "ButtonEditar"
-        Me.ButtonEditar.UseVisualStyleBackColor = True
+        Me.ButtonEditar.Text = "✏️ Editar"
+        Me.ButtonEditar.UseVisualStyleBackColor = False
         '
         'TextBoxTarea
         '
@@ -73,17 +76,18 @@ Partial Class Form1
         '
         'ButtonAgregarTarea
         '
+        Me.ButtonAgregarTarea.BackColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.ButtonAgregarTarea.Location = New System.Drawing.Point(577, 37)
         Me.ButtonAgregarTarea.Name = "ButtonAgregarTarea"
         Me.ButtonAgregarTarea.Size = New System.Drawing.Size(103, 23)
         Me.ButtonAgregarTarea.TabIndex = 4
         Me.ButtonAgregarTarea.Text = "Agregar tarea"
-        Me.ButtonAgregarTarea.UseVisualStyleBackColor = True
+        Me.ButtonAgregarTarea.UseVisualStyleBackColor = False
         '
         'ListView1
         '
         Me.ListView1.HideSelection = False
-        Me.ListView1.Location = New System.Drawing.Point(24, 69)
+        Me.ListView1.Location = New System.Drawing.Point(24, 75)
         Me.ListView1.Name = "ListView1"
         Me.ListView1.Size = New System.Drawing.Size(656, 247)
         Me.ListView1.TabIndex = 5
@@ -108,37 +112,41 @@ Partial Class Form1
         '
         'ButtonExportarCSV
         '
+        Me.ButtonExportarCSV.BackColor = System.Drawing.Color.Gainsboro
         Me.ButtonExportarCSV.Location = New System.Drawing.Point(577, 337)
         Me.ButtonExportarCSV.Name = "ButtonExportarCSV"
         Me.ButtonExportarCSV.Size = New System.Drawing.Size(103, 23)
         Me.ButtonExportarCSV.TabIndex = 8
-        Me.ButtonExportarCSV.Text = "Exportar a CSV"
-        Me.ButtonExportarCSV.UseVisualStyleBackColor = True
+        Me.ButtonExportarCSV.Text = "📤 Exportar a CSV"
+        Me.ButtonExportarCSV.UseVisualStyleBackColor = False
         '
         'LabelDescripcion
         '
         Me.LabelDescripcion.AutoSize = True
-        Me.LabelDescripcion.Location = New System.Drawing.Point(24, 24)
+        Me.LabelDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelDescripcion.Location = New System.Drawing.Point(21, 21)
         Me.LabelDescripcion.Name = "LabelDescripcion"
-        Me.LabelDescripcion.Size = New System.Drawing.Size(63, 13)
+        Me.LabelDescripcion.Size = New System.Drawing.Size(90, 16)
         Me.LabelDescripcion.TabIndex = 9
         Me.LabelDescripcion.Text = "Descripción"
         '
         'LabelFecha
         '
         Me.LabelFecha.AutoSize = True
-        Me.LabelFecha.Location = New System.Drawing.Point(327, 24)
+        Me.LabelFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelFecha.Location = New System.Drawing.Point(327, 21)
         Me.LabelFecha.Name = "LabelFecha"
-        Me.LabelFecha.Size = New System.Drawing.Size(37, 13)
+        Me.LabelFecha.Size = New System.Drawing.Size(50, 16)
         Me.LabelFecha.TabIndex = 10
         Me.LabelFecha.Text = "Fecha"
         '
         'LabelPrioridad
         '
         Me.LabelPrioridad.AutoSize = True
-        Me.LabelPrioridad.Location = New System.Drawing.Point(441, 24)
+        Me.LabelPrioridad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPrioridad.Location = New System.Drawing.Point(441, 20)
         Me.LabelPrioridad.Name = "LabelPrioridad"
-        Me.LabelPrioridad.Size = New System.Drawing.Size(48, 13)
+        Me.LabelPrioridad.Size = New System.Drawing.Size(71, 16)
         Me.LabelPrioridad.TabIndex = 11
         Me.LabelPrioridad.Text = "Prioridad"
         '
