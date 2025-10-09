@@ -14,5 +14,22 @@
         End With
     End Sub
 
+    Public Shared Sub ActualizarEncabezadosConFlechas(lv As ListView, sortColumn As Integer, sortOrder As SortOrder)
+        For i = 0 To lv.Columns.Count - 1
+            Dim textoOriginal = lv.Columns(i).Text.TrimEnd(" ▲", " ▼")
+
+            ' Elimina cualquier flecha previa
+            textoOriginal = textoOriginal.Replace(" ▲", "").Replace(" ▼", "")
+
+            ' Agrega flecha solo en la columna ordenada
+            If i = sortColumn Then
+                Dim flecha = If(sortOrder = SortOrder.Ascending, " ▲", " ▼")
+                lv.Columns(i).Text = textoOriginal & flecha
+            Else
+                lv.Columns(i).Text = textoOriginal
+            End If
+        Next
+    End Sub
+
 End Class
 

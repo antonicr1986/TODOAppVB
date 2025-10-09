@@ -46,6 +46,7 @@ Public Class MainForm
         End If
         ListView1.ListViewItemSorter = New ListViewItemComparer(e.Column, sortState(e.Column))
         ListView1.Sort()
+        ListViewRenderer.ActualizarEncabezadosConFlechas(ListView1, sortColumn, sortState(e.Column))
     End Sub
 
     'METODO PARA PINTAR LA LISTVIEW SEGUN LA PRIORIDAD #TODO
@@ -210,6 +211,8 @@ Public Class MainForm
         End If
 
     End Sub
+
+
 
 #End Region
 
