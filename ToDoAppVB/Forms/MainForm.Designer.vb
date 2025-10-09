@@ -35,6 +35,7 @@ Partial Class MainForm
         Me.LabelDescripcion = New System.Windows.Forms.Label()
         Me.LabelFecha = New System.Windows.Forms.Label()
         Me.LabelPrioridad = New System.Windows.Forms.Label()
+        Me.CheckBoxTheme = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'ButtonCompletada
@@ -45,7 +46,7 @@ Partial Class MainForm
         Me.ButtonCompletada.Size = New System.Drawing.Size(85, 23)
         Me.ButtonCompletada.TabIndex = 0
         Me.ButtonCompletada.Text = "✅ Completar"
-        Me.ButtonCompletada.UseVisualStyleBackColor = False
+        Me.ButtonCompletada.UseVisualStyleBackColor = True
         '
         'ButtonEliminar
         '
@@ -55,7 +56,7 @@ Partial Class MainForm
         Me.ButtonEliminar.Size = New System.Drawing.Size(75, 23)
         Me.ButtonEliminar.TabIndex = 1
         Me.ButtonEliminar.Text = "🗑️ Eliminar"
-        Me.ButtonEliminar.UseVisualStyleBackColor = False
+        Me.ButtonEliminar.UseVisualStyleBackColor = True
         '
         'ButtonEditar
         '
@@ -65,11 +66,11 @@ Partial Class MainForm
         Me.ButtonEditar.Size = New System.Drawing.Size(75, 23)
         Me.ButtonEditar.TabIndex = 2
         Me.ButtonEditar.Text = "✏️ Editar"
-        Me.ButtonEditar.UseVisualStyleBackColor = False
+        Me.ButtonEditar.UseVisualStyleBackColor = True
         '
         'TextBoxTarea
         '
-        Me.TextBoxTarea.Location = New System.Drawing.Point(24, 40)
+        Me.TextBoxTarea.Location = New System.Drawing.Point(24, 58)
         Me.TextBoxTarea.Name = "TextBoxTarea"
         Me.TextBoxTarea.Size = New System.Drawing.Size(268, 20)
         Me.TextBoxTarea.TabIndex = 3
@@ -77,17 +78,17 @@ Partial Class MainForm
         'ButtonAgregarTarea
         '
         Me.ButtonAgregarTarea.BackColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.ButtonAgregarTarea.Location = New System.Drawing.Point(577, 37)
+        Me.ButtonAgregarTarea.Location = New System.Drawing.Point(577, 52)
         Me.ButtonAgregarTarea.Name = "ButtonAgregarTarea"
         Me.ButtonAgregarTarea.Size = New System.Drawing.Size(103, 23)
         Me.ButtonAgregarTarea.TabIndex = 4
         Me.ButtonAgregarTarea.Text = "Agregar tarea"
-        Me.ButtonAgregarTarea.UseVisualStyleBackColor = False
+        Me.ButtonAgregarTarea.UseVisualStyleBackColor = True
         '
         'ListView1
         '
         Me.ListView1.HideSelection = False
-        Me.ListView1.Location = New System.Drawing.Point(24, 75)
+        Me.ListView1.Location = New System.Drawing.Point(24, 84)
         Me.ListView1.Name = "ListView1"
         Me.ListView1.Size = New System.Drawing.Size(656, 247)
         Me.ListView1.TabIndex = 5
@@ -96,7 +97,7 @@ Partial Class MainForm
         'DateTimePicker1
         '
         Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker1.Location = New System.Drawing.Point(330, 40)
+        Me.DateTimePicker1.Location = New System.Drawing.Point(330, 55)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(96, 20)
         Me.DateTimePicker1.TabIndex = 6
@@ -105,7 +106,7 @@ Partial Class MainForm
         '
         Me.ComboBoxPrioridad.FormattingEnabled = True
         Me.ComboBoxPrioridad.Items.AddRange(New Object() {"Baja", "Media", "Alta"})
-        Me.ComboBoxPrioridad.Location = New System.Drawing.Point(444, 39)
+        Me.ComboBoxPrioridad.Location = New System.Drawing.Point(444, 54)
         Me.ComboBoxPrioridad.Name = "ComboBoxPrioridad"
         Me.ComboBoxPrioridad.Size = New System.Drawing.Size(121, 21)
         Me.ComboBoxPrioridad.TabIndex = 7
@@ -118,13 +119,13 @@ Partial Class MainForm
         Me.ButtonExportarCSV.Size = New System.Drawing.Size(103, 23)
         Me.ButtonExportarCSV.TabIndex = 8
         Me.ButtonExportarCSV.Text = "📤 Exportar a CSV"
-        Me.ButtonExportarCSV.UseVisualStyleBackColor = False
+        Me.ButtonExportarCSV.UseVisualStyleBackColor = True
         '
         'LabelDescripcion
         '
         Me.LabelDescripcion.AutoSize = True
         Me.LabelDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDescripcion.Location = New System.Drawing.Point(21, 21)
+        Me.LabelDescripcion.Location = New System.Drawing.Point(21, 35)
         Me.LabelDescripcion.Name = "LabelDescripcion"
         Me.LabelDescripcion.Size = New System.Drawing.Size(90, 16)
         Me.LabelDescripcion.TabIndex = 9
@@ -134,7 +135,7 @@ Partial Class MainForm
         '
         Me.LabelFecha.AutoSize = True
         Me.LabelFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelFecha.Location = New System.Drawing.Point(327, 21)
+        Me.LabelFecha.Location = New System.Drawing.Point(327, 35)
         Me.LabelFecha.Name = "LabelFecha"
         Me.LabelFecha.Size = New System.Drawing.Size(50, 16)
         Me.LabelFecha.TabIndex = 10
@@ -144,17 +145,29 @@ Partial Class MainForm
         '
         Me.LabelPrioridad.AutoSize = True
         Me.LabelPrioridad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPrioridad.Location = New System.Drawing.Point(441, 20)
+        Me.LabelPrioridad.Location = New System.Drawing.Point(441, 35)
         Me.LabelPrioridad.Name = "LabelPrioridad"
         Me.LabelPrioridad.Size = New System.Drawing.Size(71, 16)
         Me.LabelPrioridad.TabIndex = 11
         Me.LabelPrioridad.Text = "Prioridad"
         '
-        'Form1
+        'CheckBoxTheme
+        '
+        Me.CheckBoxTheme.Appearance = System.Windows.Forms.Appearance.Button
+        Me.CheckBoxTheme.Location = New System.Drawing.Point(611, 12)
+        Me.CheckBoxTheme.Name = "CheckBoxTheme"
+        Me.CheckBoxTheme.Size = New System.Drawing.Size(80, 20)
+        Me.CheckBoxTheme.TabIndex = 12
+        Me.CheckBoxTheme.Text = "Modo Oscuro"
+        Me.CheckBoxTheme.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.CheckBoxTheme.UseVisualStyleBackColor = True
+        '
+        'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(703, 376)
+        Me.Controls.Add(Me.CheckBoxTheme)
         Me.Controls.Add(Me.LabelPrioridad)
         Me.Controls.Add(Me.LabelFecha)
         Me.Controls.Add(Me.LabelDescripcion)
@@ -170,7 +183,7 @@ Partial Class MainForm
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
-        Me.Name = "Form1"
+        Me.Name = "MainForm"
         Me.Text = "Gestor de tareas"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -189,4 +202,5 @@ Partial Class MainForm
     Friend WithEvents LabelDescripcion As Label
     Friend WithEvents LabelFecha As Label
     Friend WithEvents LabelPrioridad As Label
+    Friend WithEvents CheckBoxTheme As CheckBox
 End Class

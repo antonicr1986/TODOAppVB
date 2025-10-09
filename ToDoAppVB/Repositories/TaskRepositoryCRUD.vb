@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SQLite
 
-Public Class TaskRepository
+Public Class TaskRepositoryCRUD
     Private connectionString As String = "Data Source=tasks.db;Version=3;"
 
     Public Function GetAllTasks() As List(Of Task)

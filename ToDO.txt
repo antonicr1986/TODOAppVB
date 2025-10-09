@@ -17,3 +17,5 @@
 7.-Pulir código
 	a.-Arquitectura según carpetas DONE!!!!!
 	b.-Pulir código línea a línea 
+
+8.-Implementar clase TaskService para modularizar mas el código y mejor arquitectura.

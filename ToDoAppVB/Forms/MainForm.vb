@@ -1,11 +1,14 @@
 ﻿Imports System.Data.SQLite
 Imports System.IO
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Button
 
 
 Public Class MainForm
 
-    Private repo As New TaskRepository()
+    'CLASE PRINCIPAL DEL PROGRAMA, GESTIONA LOS EVENTOS DE LOS BOTONES Y LA CARGA INICIAL
+    Private repoService As New TaskService()
+    Private repo As New TaskRepositoryCRUD()
     Private sortColumn As Integer = -1
     Private sortState As Dictionary(Of Integer, SortOrder) = New Dictionary(Of Integer, SortOrder)
 
@@ -17,20 +20,12 @@ Public Class MainForm
         Dim dbInit As New DatabaseInitializer()
         dbInit.Inicializar()
 
-        repo = New TaskRepository() ' Ahora que la BD existe, se puede usar
+        repo = New TaskRepositoryCRUD() ' Ahora que la BD existe, se puede usar
         CargarTareas()
 
         'ListView1.OwnerDraw = True DESCOMENTAR PARA PINTAR LA LISTVIEW SEGUN PRIORIDAD #TODO
-        ListView1.View = View.Details
-        ListView1.FullRowSelect = True
-        ListView1.GridLines = True
-
-        ListView1.Columns.Clear()
-        ListView1.Columns.Add("ID", 50)
-        ListView1.Columns.Add("Descripción", 300)
-        ListView1.Columns.Add("Completada", 80)
-        ListView1.Columns.Add("Fecha", 100)
-        ListView1.Columns.Add("Prioridad", 100)
+        ListViewRenderer.ConfigurarPropiedadesListView(ListView1)
+        UIManager.Ocultar(CheckBoxTheme)
 
     End Sub
 
@@ -122,7 +117,7 @@ Public Class MainForm
     End Function
 
 
-#Region "Métodos de click"
+#Region "Métodos de click" '#TODO Sacar metodos a la clase TaskService
     Private Sub ButtonAgregarTarea_Click(sender As Object, e As EventArgs) Handles ButtonAgregarTarea.Click
         Dim descripcion As String = TextBoxTarea.Text.Trim()
         Dim fecha As DateTime = DateTimePicker1.Value
@@ -133,7 +128,16 @@ Public Class MainForm
             TextBoxTarea.Clear()
             CargarTareas()
         Else
-            MessageBox.Show("Escribe una descripción para la tarea.", "Campo vacío", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            NotificationsService.MostrarError("La descripción no puede estar vacía.")
+        End If
+
+    End Sub
+
+    'MÉTODO PARA AÑADIR TAREA AL PULSAR ENTER
+    Private Sub TextBoxTarea_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBoxTarea.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True ' Evita el sonido de "ding"
+            ButtonAgregarTarea_Click(sender, e)
         End If
 
     End Sub
@@ -155,7 +159,7 @@ Public Class MainForm
                     CargarTareas()
                 End If
             Else
-                MessageBox.Show("No se encontró la tarea seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                NotificationsService.MostrarError("No se encontro la tarea seleccionada.")
             End If
         Else
             MessageBox.Show("Selecciona una tarea para marcar como completada.", "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -207,6 +211,10 @@ Public Class MainForm
 
     End Sub
 
+#End Region
+
+#Region "LLAMADA A CLASES DE UTILS"
+
     Private Sub ButtonExportarCSV_Click(sender As Object, e As EventArgs) Handles ButtonExportarCSV.Click
         Dim tareas As List(Of Task) = repo.GetAllTasks()
 
@@ -214,6 +222,15 @@ Public Class MainForm
         exporter.ExportarCSV(tareas)
 
     End Sub
+
+
+    '#TODO PENDIENTE DE REVISAR LA CLASE THEMEMANAGER QUE NO ESTA TERMINADA CORRECAMENTE
+    'Private Sub CheckBoxTheme_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxTheme.CheckedChanged
+    '    ThemeManager.IsDarkMode = CheckBoxTheme.Checked
+    '    ThemeManager.ApplyTheme(Me)
+
+    '    CheckBoxTheme.Text = If(CheckBoxTheme.Checked, "🌙 Modo Oscuro", "☀️ Modo Claro")
+    'End Sub
 
 #End Region
 
